@@ -1,0 +1,100 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  PROJECT_MANAGER
+  DEVELOPER
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  DONE
+  OVERDUE
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  name          String
+  email         String   @unique
+  password      String
+  role          Role     @default(DEVELOPER)
+  refresh_token String?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  created_projects Project[]     @relation("ProjectCreator")
+  assigned_tasks   Task[]        @relation("TaskAssignee")
+  activity_logs    ActivityLog[]
+
+  @@map("users")
+}
+
+model Project {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String?
+  client_name   String
+  created_by_id Int
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  created_by User   @relation("ProjectCreator", fields: [created_by_id], references: [id], onDelete: Cascade)
+  tasks      Task[]
+
+  @@index([created_by_id])
+  @@map("projects")
+}
+
+model Task {
+  id             Int          @id @default(autoincrement())
+  title          String
+  description    String?
+  status         TaskStatus   @default(TODO)
+  priority       TaskPriority @default(MEDIUM)
+  due_date       DateTime
+  project_id     Int
+  assigned_to_id Int?
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
+
+  project     Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  assigned_to User?   @relation("TaskAssignee", fields: [assigned_to_id], references: [id], onDelete: SetNull)
+
+  activity_logs ActivityLog[]
+
+  @@index([project_id])
+  @@index([assigned_to_id])
+  @@index([status])
+  @@map("tasks")
+}
+
+model ActivityLog {
+  id          Int      @id @default(autoincrement())
+  task_id     Int
+  user_id     Int
+  action_text String
+  created_at  DateTime @default(now())
+
+  task Task @relation(fields: [task_id], references: [id], onDelete: Cascade)
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([task_id])
+  @@index([user_id])
+  @@map("activity_logs")
+}
