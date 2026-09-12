@@ -1,4 +1,4 @@
-# Real-Time Client Project Dashboard (Backend API) — **Built with AI Assistance (Honest Disclosure)**
+# Real-Time Client Project Dashboard (Backend API) — **Built using AI**
 
 A clean, modular REST API built with Node.js, Express, PostgreSQL, and Prisma ORM enforcing strict Role-Based Access Control (RBAC) and automated background task management.
 
