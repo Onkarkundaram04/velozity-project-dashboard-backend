@@ -7,11 +7,12 @@ A clean, modular REST API built with Node.js, Express, PostgreSQL, and Prisma OR
 ## 📢 Candidate Statement & Skill Disclosure
 
 * **Transparency & AI Disclosure:**  
-  I utilized AI tools as an assistant to architect and scaffold this backend implementation within the given time. My prior database experience was exclusively with **MongoDB (NoSQL)**; relational databases (PostgreSQL) and Prisma ORM were completely new to me, so AI heavily assisted in designing the relational schema, foreign key relations, and Prisma queries.
+  In complete transparency, AI tools were heavily relied upon to write, scaffold, and structure almost the entire backend codebase, controllers, and Prisma setup within the given timeframe, as the assessment's requirements were well beyond my current skill level.
 * **Current Skill Profile:**  
-  * **Focus:** I am actively learning backend engineering. Prior to this assessment, my experience was centered on Node.js/Express with MongoDB. I am comfortable with basic REST APIs, MVC structure, JWT authentication, and simple CRUD operations.
+  * **Data Layer:** While I have foundational knowledge of SQL and MySQL, integrating PostgreSQL with Prisma ORM inside Node.js was different than usual for me. The main challenge was structuring strict, multi-tier role isolation at the API and query level (ensuring PMs and Developers cannot access unauthorized records) rather than typical simple CRUD operations.
+  * **Backend Focus:** I am actively learning backend engineering and am comfortable with basic REST APIs, MVC structure, and JWT authentication in Node.js/Express.
   * **Frontend Status:** I currently have foundational knowledge of HTML, CSS, and basic JavaScript. I have not yet learned React or TypeScript, so the frontend was omitted rather than presenting unvetted code.
-  * **Scope & Learning:** Real-time WebSockets, distributed event streaming, and complex queues are advanced concepts I have not yet mastered. I chose to submit an honest, functioning backend that reflects where I am currently learning.
+  * **Future Learning:** Real-time WebSockets and advanced distributed systems are areas I plan to master from scratch, actively eliminating reliance on AI as my skills mature.
 
 ---
 
